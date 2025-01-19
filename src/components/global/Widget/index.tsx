@@ -1,6 +1,7 @@
 import { fetchUserProfile } from "@/lib/utils";
-import { useUser } from "@clerk/clerk-react";
+import { ClerkLoading, SignedIn, useUser } from "@clerk/clerk-react";
 import React, { useEffect, useState } from "react";
+import { Loader } from "../Loader";
 
 const index = () => {
   const [profile, setProfile] = useState<{
@@ -29,18 +30,32 @@ const index = () => {
       | null;
   } | null>(null);
 
-
-  const {user} = useUser();
-
-
+  const { user } = useUser();
+  const {state , fetchMediaResources} = useMediaSources();
   useEffect(() => {
-
-
-    if(user && user.id) {
-        fetchUserProfile(user.id).then((p) => setProfile(p)) 
+    if (user && user.id) {
+      fetchUserProfile(user.id).then((p) => setProfile(p));
     }
-  },[user])
-  return <div>index</div>;
+  }, [user]);
+  return (
+    <div className="p-5">
+      <ClerkLoading>
+        <div className="h-full flex justify-center items-center">
+          <Loader />
+        </div>
+      </ClerkLoading>
+      <SignedIn>
+        {profile ? (
+          // @ts-ignore
+          <MediaConfiguration state={state} user={profile?.user} />
+        ) : (
+          <div className="w-full h-full flex justify-center items-center">
+            <Loader color="#fff" />
+          </div>
+        )}
+      </SignedIn>
+    </div>
+  );
 };
 
 export default index;
