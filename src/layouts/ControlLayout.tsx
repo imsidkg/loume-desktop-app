@@ -8,6 +8,7 @@ type Props = {
   className?: string;
 };
 
+
 const ControlLayout = ({ children, className }: Props) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   window.ipcRenderer.on("hide-plugin", (event, payload) => {
@@ -36,7 +37,7 @@ const ControlLayout = ({ children, className }: Props) => {
       <div className="p-5 flex w-full">
         <div className="flex items-center gap-2">
           <img src="/opal-logo.svg" alt="opal-logo" />
-          <p className="text-white text-2xl font-bold">Opal</p>
+          <p className="text-white text-2xl font-bold">Loume</p>
         </div>
       </div>
     </div>
