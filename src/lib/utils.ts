@@ -22,3 +22,15 @@ export const fetchUserProfile = async (clerkId: string) => {
   });
   return response.data;
 };  
+
+
+
+export const getMediaSources = async () => {
+  const displays = await window.ipcRenderer.invoke("getSources");
+  const enumerateDevices = await navigator.mediaDevices.enumerateDevices();
+  const audioInput = enumerateDevices.filter(
+    (device) => device.kind === "audioinput"
+  );
+  console.log("getting");
+  return { displays, audio: audioInput };
+};

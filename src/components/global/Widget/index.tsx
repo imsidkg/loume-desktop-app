@@ -2,6 +2,7 @@ import { fetchUserProfile } from "@/lib/utils";
 import { ClerkLoading, SignedIn, useUser } from "@clerk/clerk-react";
 import React, { useEffect, useState } from "react";
 import { Loader } from "../Loader";
+import { useMediaSources } from "@/hooks/useMediaSources";
 
 const index = () => {
   const [profile, setProfile] = useState<{
