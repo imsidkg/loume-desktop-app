@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Loader } from "../Loader";
 import { useMediaSources } from "@/hooks/useMediaSources";
 
-const index = () => {
+const Widget = () => {
   const [profile, setProfile] = useState<{
     status: number;
     user:
@@ -59,4 +59,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Widget;
