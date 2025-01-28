@@ -34,3 +34,28 @@ export const getMediaSources = async () => {
   console.log("getting");
   return { displays, audio: audioInput };
 };
+
+export const updateStudioSettings = async (
+  id: string,
+  screen: string,
+  audio: string,
+  preset: "HD" | "SD"
+) => {
+  const response = await httpsClient.post(
+    `/studio/${id}`,
+    {
+      screen,
+      audio,
+      preset,
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  return response.data;
+};
+export const hidePluginWindow = (state: boolean) => {
+  window.ipcRenderer.send("hide-plugin", { state });
+};
